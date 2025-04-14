@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 from calflops import calculate_flops
 
-from src.core import YAMLConfig
+from d_fine.core import YAMLConfig
 
 
 def custom_repr(self):

@@ -19,7 +19,7 @@ import tqdm
 from fiftyone import ViewField as F
 from PIL import Image
 
-from src.core import YAMLConfig
+from d_fine.core import YAMLConfig
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "../.."))
 

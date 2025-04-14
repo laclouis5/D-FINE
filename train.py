@@ -14,9 +14,9 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 
 import argparse
 
-from src.core import YAMLConfig, yaml_utils
-from src.misc import dist_utils
-from src.solver import TASKS
+from d_fine.core import YAMLConfig, yaml_utils
+from d_fine.misc import dist_utils
+from d_fine.solver import TASKS
 from pprint import pprint
 
 debug = False

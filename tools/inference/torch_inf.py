@@ -13,7 +13,7 @@ import torchvision.transforms as T
 from PIL import Image, ImageDraw
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
-from src.core import YAMLConfig
+from d_fine.core import YAMLConfig
 
 
 def draw(images, labels, boxes, scores, thrh=0.4):

@@ -2,7 +2,7 @@ import numpy as np
 import onnxruntime as ort
 import torch
 import torchvision
-from utils import yolo_insert_nms
+from ..benchmark.utils import yolo_insert_nms
 
 
 class YOLO11(torch.nn.Module):

@@ -8,20 +8,22 @@ Copyright (c) 2023 lyuwenyu. All Rights Reserved.
 
 import os
 import sys
+
 import torch
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
 import argparse
+from pprint import pprint
 
 from d_fine.core import YAMLConfig, yaml_utils
 from d_fine.misc import dist_utils
 from d_fine.solver import TASKS
-from pprint import pprint
 
 debug = False
 
 if debug:
+
     def custom_repr(self):
         return f"{{Tensor:{tuple(self.shape)}}} {original_repr(self)}"
 
@@ -40,9 +42,9 @@ def train(args) -> None:
     """main"""
     dist_utils.setup_distributed(args.print_rank, args.print_method, seed=args.seed)
 
-    assert not all(
-        [args.tuning, args.resume]
-    ), "Only support from_scrach or resume or tuning at one time"
+    assert not all([args.tuning, args.resume]), (
+        "Only support from_scrach or resume or tuning at one time"
+    )
 
     update_dict = yaml_utils.parse_cli(args.update)
     update_dict.update(
@@ -84,14 +86,11 @@ def parse_args():
     parser.add_argument("-c", "--config", type=str, required=True)
     parser.add_argument("-r", "--resume", type=str, help="resume from checkpoint")
     parser.add_argument("-t", "--tuning", type=str, help="tuning from checkpoint")
-    parser.add_argument(
-        "-d",
-        "--device",
-        type=str,
-        help="device",
-    )
+    parser.add_argument("-d", "--device", type=str, help="device")
     parser.add_argument("--seed", type=int, help="exp reproducibility")
-    parser.add_argument("--use-amp", action="store_true", help="auto mixed precision training")
+    parser.add_argument(
+        "--use-amp", action="store_true", help="auto mixed precision training"
+    )
     parser.add_argument("--output-dir", type=str, help="output directory")
     parser.add_argument("--summary-dir", type=str, help="tensorboard summary")
     parser.add_argument(
@@ -104,7 +103,9 @@ def parse_args():
     parser.add_argument("-u", "--update", nargs="+", help="update yaml config")
 
     # env
-    parser.add_argument("--print-method", type=str, default="builtin", help="print method")
+    parser.add_argument(
+        "--print-method", type=str, default="builtin", help="print method"
+    )
     parser.add_argument("--print-rank", type=int, default=0, help="print rank id")
 
     parser.add_argument("--local-rank", type=int, help="local rank id")

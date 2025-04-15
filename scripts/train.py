@@ -36,7 +36,7 @@ def safe_get_rank():
         return 0
 
 
-def main(args) -> None:
+def train(args) -> None:
     """main"""
     dist_utils.setup_distributed(args.print_rank, args.print_method, seed=args.seed)
 
@@ -77,7 +77,7 @@ def main(args) -> None:
     dist_utils.cleanup()
 
 
-if __name__ == "__main__":
+def parse_args():
     parser = argparse.ArgumentParser()
 
     # priority 0
@@ -92,8 +92,8 @@ if __name__ == "__main__":
     )
     parser.add_argument("--seed", type=int, help="exp reproducibility")
     parser.add_argument("--use-amp", action="store_true", help="auto mixed precision training")
-    parser.add_argument("--output-dir", type=str, help="output directoy")
-    parser.add_argument("--summary-dir", type=str, help="tensorboard summry")
+    parser.add_argument("--output-dir", type=str, help="output directory")
+    parser.add_argument("--summary-dir", type=str, help="tensorboard summary")
     parser.add_argument(
         "--test-only",
         action="store_true",
@@ -108,6 +108,9 @@ if __name__ == "__main__":
     parser.add_argument("--print-rank", type=int, default=0, help="print rank id")
 
     parser.add_argument("--local-rank", type=int, help="local rank id")
-    args = parser.parse_args()
+    return parser.parse_args()
 
-    main(args)
+
+if __name__ == "__main__":
+    args = parse_args()
+    train(args)

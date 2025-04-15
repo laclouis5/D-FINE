@@ -45,9 +45,6 @@ openvino = [
     "openvino>=2025.1.0",
 ]
 
-[project.scripts]
-d-fine = "d_fine:main"
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
